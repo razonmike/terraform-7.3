@@ -17,3 +17,11 @@ variable "yc_zone" {
 variable "centos-7-base" {
   default = "fd891fao5ls515gb9r0l"
 }
+
+variable "var.access_key" {
+  default = ""
+}
+
+variable "var.secret_key" {
+  default = ""
+}

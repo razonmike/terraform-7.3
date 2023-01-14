@@ -3,5 +3,3 @@ provider "yandex" {
   cloud_id  = var.yc_cloud_id
   zone      = var.yc_zone
 }
-
-

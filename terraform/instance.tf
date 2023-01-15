@@ -1,6 +1,6 @@
 resource "yandex_compute_instance" "centos-7" {
   count = local.instance_count[terraform.workspace]
-  name = "${terraform.workspace}-count-${count.index}"
+  name  = "${terraform.workspace}-count-${count.index}"
 
   resources {
     cores  = local.vm_cores[terraform.workspace]
@@ -9,7 +9,7 @@ resource "yandex_compute_instance" "centos-7" {
 
   boot_disk {
     initialize_params {
-      image_id    = var.centos-7-base
+      image_id = var.centos-7-base
     }
   }
 
@@ -21,16 +21,16 @@ resource "yandex_compute_instance" "centos-7" {
   metadata = {
     ssh-keys = "centos:${file("~/.ssh/id_rsa.pub")}"
   }
-  
+
   lifecycle {
     create_before_destroy = true
   }
 }
 
 resource "yandex_compute_instance" "centos-1-fe" {
-  
+
   for_each = local.vm_foreach[terraform.workspace]
-  name = "${terraform.workspace}-foreach-${each.key}"
+  name     = "${terraform.workspace}-foreach-${each.key}"
 
   resources {
     cores  = each.value.cores
@@ -39,7 +39,7 @@ resource "yandex_compute_instance" "centos-1-fe" {
 
   boot_disk {
     initialize_params {
-      image_id    = var.centos-7-base
+      image_id = var.centos-7-base
     }
   }
 
@@ -51,7 +51,7 @@ resource "yandex_compute_instance" "centos-1-fe" {
   metadata = {
     ssh-keys = "centos:${file("~/.ssh/id_rsa.pub")}"
   }
-  
+
   lifecycle {
     create_before_destroy = true
   }
@@ -71,28 +71,27 @@ resource "yandex_vpc_subnet" "default" {
 
 locals {
   instance_count = {
-    "prod"=2
-    "stage"=1
+    "prod"  = 2
+    "stage" = 1
   }
   vm_cores = {
-    "prod"=2
-    "stage"=1
+    "prod"  = 2
+    "stage" = 1
   }
   vm_memory = {
-    "prod"=2
-    "stage"=1
+    "prod"  = 2
+    "stage" = 1
   }
   vm_foreach = {
     prod = {
       "3" = { cores = "2", memory = "2" },
       "2" = { cores = "2", memory = "2" }
     }
-	stage = {
+    stage = {
       "1" = { cores = "1", memory = "1" }
     }
   }
 }
-
 
 output "internal_ip_address_vm_1" {
   value = yandex_compute_instance.centos-7[*].network_interface.0.ip_address

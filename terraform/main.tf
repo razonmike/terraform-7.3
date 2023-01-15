@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 terraform {
   required_providers {
     yandex = {
@@ -23,4 +24,10 @@ provider "yandex" {
   cloud_id   = var.yc_cloud_id
   folder_id  = var.yc_folder_id
   zone       = var.yc_zone     
+=======
+provider "yandex" {
+  token     = var.yc_token
+  cloud_id  = var.yc_cloud_id
+  zone      = var.yc_zone
+>>>>>>> e2c2422f1832c5682009f7c200940f97ad19f801
 }

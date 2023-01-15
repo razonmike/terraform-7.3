@@ -29,9 +29,7 @@ razonmike@razonmike-ThinkPad-T480:~/netology/terraform-7.3/terraform$ terraform 
   stage
 ```
 
-```
 ![image](https://user-images.githubusercontent.com/16393583/212564290-41ab1b14-d3e1-40ef-8b7e-b2caa60d4f4a.png)
-```
 
 Вывод команды terraform plan для воркспейса prod.
 ```bash
